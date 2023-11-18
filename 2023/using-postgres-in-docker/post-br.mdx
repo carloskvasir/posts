@@ -1,0 +1,44 @@
+---
+title: Usando postgresql no docker
+tags: docker, postgresql, tutorial, how-to
+date: 2023-01-05
+lang: pt-BR
+---
+
+# Executando uma instância de PostgreSQL no Docker
+
+Para executar uma instância de PostgreSQL no Docker com dados persistentes, você pode usar o seguinte comando:  
+
+```bash
+docker run -d --name postgres-estudo \
+ -e POSTGRES_PASSWORD=12345678 \
+ -v pgdata:/var/lib/postgresql/data \
+ postgres
+```
+
+Para verificar se o container foi iniciado corretamente, você pode usar o seguinte comando:
+
+`docker ps`
+![alt text][ps_immage]
+
+Esse comando irá listar todos os containers que estão em execução. Você deve ver o container "postgres-estudo" na lista.
+
+Se quiser pode parar o container  usando `docker stop postgres-estudo` ou iniciar se ja foi craido usando `docker start postgres-estudo`
+
+Para conectar-se ao banco de dados, você pode usar uma ferramenta de gerenciamento de banco de dados, como o *DBeaver*.
+
+Explicação do comando:  
+> -d: indica que o container será executado em segundo plano.  
+> --name: dá um nome ao container.  
+> -e POSTGRES_PASSWORD=12345678: define a variável de ambiente POSTGRES_PASSWORD com a senha 12345678.  
+> -v pgdata:/var/lib/postgresql/data: monta o volume pgdata no diretório /var/lib/postgresql/data do container.  
+> postgres: usa a imagem oficial do PostgreSQL.
+
+## Vantagens de usar dados persistentes:
+
+Os dados do banco de dados não serão perdidos se o container for parado ou destruído.
+Você pode usar o mesmo container para executar o banco de dados em diferentes máquinas.
+
+Escrito por Carlos Kvasir Lima
+[ps_image]: "./d-ps.png"
+
