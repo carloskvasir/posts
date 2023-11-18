@@ -1,0 +1,34 @@
+---
+title: Como configurar o "ç" em teclados americanos no Linux
+date: 01/02/2023
+slug: test-slug
+---
+# Como configurar o "ç" em teclados americanos no Linux
+
+Se você está usando um teclado americano no Linux, pode encontrar dificuldades ao tentar digitar caracteres acentuados, como o "ç". Felizmente, é possível configurar o teclado para incluir esses caracteres especiais com apenas algumas etapas simples.  
+
+## Passo 1: Abrir o arquivo de configuração do teclado
+Para começar, abra o arquivo de configuração do teclado em seu editor de texto favorito. No Ubuntu, o arquivo de configuração está localizado em "/etc/default/keyboard".  
+
+## Passo 2: Alterar as configurações do teclado
+Dentro do arquivo de configuração, você precisará alterar algumas configurações para incluir o "ç". Adicione a seguinte linha no final do arquivo:  
+´´´bash
+XKBOPTIONS="terminate:ctrl_alt_bksp,grp:alt_shift_toggle,grp:switch,grp_led:scroll,compose:c,compose:ralt"
+´´´
+
+## Passo 3: Salvar e sair do editor
+Salve as alterações no arquivo e feche o editor. Em seguida, reinicie o serviço do teclado com o seguinte comando:  
+´´´bash
+sudo service keyboard-setup restart
+´´´
+
+## Passo 4: Verificar as configurações do teclado
+Para verificar se as configurações do teclado foram aplicadas corretamente, digite o seguinte comando no terminal:  
+´´´bash
+setxkbmap -query
+´´´
+Isso mostrará as configurações atuais do teclado. Verifique se as opções "compose:c" e "compose:ralt" estão listadas.
+
+Com essas configurações, você deve ser capaz de digitar o "ç" pressionando a tecla "Compose" seguida das letras "c" ou ",".  
+Além disso, você poderá acessar outros caracteres especiais, como acentos e cedilhas, pressionando a tecla "Compose" seguida de outras letras.
+
